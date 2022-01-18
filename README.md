@@ -29,7 +29,7 @@ return sum += addend; //if += operator returns Bar&, move constructor may not be
 ```
 
 
-delete the old one before allocating new resource can be dangerous
+deleting old resources before allocating new resources can be dangerous
 ```c++
 delete old_data; //make sure to check self assignment (try copy and swap strategy)
 Bar *new_data = new Bar(); //if exception happens, then old data is lost!
