@@ -47,7 +47,7 @@ return sum += addend; //if += operator returns Bar&, move constructor may not be
 deleting old resources before allocating new resources can be dangerous
 ```c++
 delete old_data; //make sure to check self assignment (try copy and swap strategy)
-Bar *new_data = new Bar(); //if exception happens, then the old data is lost!
+Bar *new_data = new Bar(); //if exception happens, then it fails to allocate new resources AND the old data is lost!
 old_data = new_data;
 ```
 
