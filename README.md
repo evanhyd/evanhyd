@@ -1,14 +1,29 @@
 # UnboxTheCat
 
-# Things I need to be aware of next time:
-
-'\n' over std::endl, except for interactive console  
+# Things I need to pay attention next time:
+  
+use huge buffer to speed up reading if needed  
+  
+  
+  
+do not mix up signed and unsigned in arithmetic calculation
 ```c++
-std::cout<<"hello"<<std::endl; //flushing may be unnecessary
+constexpr int kCapacity = 10;
+std::string a, b;
+std::cin >> a >> b;
+if((kCapacity - a.size()) > b.size()) //oh no, kCapacity - a.size() can underflow
+{
+    //do something
+}
 ```
   
   
-use huge buffer to speed up reading if needed  
+  
+'\n' over std::endl, except for interactive console  
+```c++
+std::cout << "hello" << std::endl; //flushing may be unnecessary
+```
+  
   
   
 pointer/reference to priority queue's top can be invalidated!  
