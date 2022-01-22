@@ -39,8 +39,12 @@ while(!que.empty())
 
 return reference directly may not evoke move semantics 
 ```c++
-Bar sum(*this);
-return sum += addend; //if += operator returns Bar&, move constructor may not be evoked
+Bar operand+(const Bar& addend)
+{
+    Bar sum(*this);
+    return sum += addend; //if += operator returns Bar&, it may evoke copy constructor instead of move constructor
+}
+
 ```
 
 
