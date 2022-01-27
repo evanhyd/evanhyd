@@ -75,6 +75,8 @@ fn  (function)
 
 # tricks may or may not work in lxxxcode
 ```c++
+#pragma GCC optimize ("O2")
+#pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
 #pragma GCC target ("avx2")
 ```
