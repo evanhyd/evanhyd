@@ -37,10 +37,9 @@ while(!que.empty())
 
 return reference directly may not evoke move semantics 
 ```c++
-Bar operand+(const Bar& addend)
+Bar Foo(const Bar& rhs)
 {
-    Bar sum(*this);
-    return sum += addend; //if += operator returns Bar&, it may evoke copy constructor instead of move constructor
+    return this->Interact(rhs); //if Interact function returns Bar&, it may evoke copy constructor instead of move constructor
 }
 
 ```
@@ -80,3 +79,7 @@ fn  (function)
 #pragma GCC optimize ("Ofast")
 #pragma GCC target ("avx2")
 ```
+
+# guides that I follow  
+[C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
+[C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421708#4421708)   
