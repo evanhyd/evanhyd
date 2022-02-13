@@ -80,6 +80,9 @@ fn  (function)
 #pragma GCC target ("avx2")
 ```
 
-# guides that I follow  
+# recommended guides
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
-[C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading/4421708#4421708)   
+[C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
+[C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
+
+
