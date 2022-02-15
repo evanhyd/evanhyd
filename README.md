@@ -45,9 +45,9 @@ Bar Foo(const Bar& rhs)
 ```
 
 
-deleting old resources before allocating new resources can be dangerous
+allocate new resources before deleting the old one  
 ```c++
-delete old_data; //make sure to check self assignment (try copy and swap strategy)
+delete old_data; //make sure to check self assignment (try RAII with copy and swap)  
 Bar *new_data = new Bar(); //if exception happens, then it fails to allocate new resources AND the old data is lost!
 old_data = new_data;
 ```
