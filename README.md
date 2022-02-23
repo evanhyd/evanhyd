@@ -1,7 +1,12 @@
 # Things I need to pay attention next time:
   
 use huge buffer to speed up reading if needed  
-  
+```c++
+#define INPUT_SIZE (250<<10)
+int _i0=0;
+char _,_i[INPUT_SIZE+5];
+#define su(x) do{for(x=_i[_i0++]-48;47<(_=_i[_i0++]);x=x*10+_-48);}while(0)
+```
   
   
 do not mix up signed and unsigned in arithmetic calculation
