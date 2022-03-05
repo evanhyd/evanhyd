@@ -80,8 +80,10 @@ fn  (function)
 # tricks may or may not work in lxxxcode
 ```c++
 #pragma GCC optimize ("O2")
-#pragma GCC optimize ("O3")
 #pragma GCC optimize ("Ofast")
+
+#pragma GCC optimize("03")
+#pragma GCC target ("avx")
 #pragma GCC target ("avx2")
 ```
 
