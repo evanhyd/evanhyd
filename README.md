@@ -7,6 +7,13 @@ int _i0=0;
 char _,_i[INPUT_SIZE+5];
 #define su(x) do{for(x=_i[_i0++]-48;47<(_=_i[_i0++]);x=x*10+_-48);}while(0)
 ```
+
+
+hacky method to speed up reading unsigned integer (stolen from DMOJ)
+```c++
+#define scan(x) do{while((x=getchar())<'0'); for(x-='0'; '0'<=(_=getchar()); x=(x<<3)+(x<<1)+_-'0');}while(0)
+char _;
+```
   
   
 do not mix up signed and unsigned in arithmetic calculation
@@ -83,13 +90,18 @@ fn  (function)
 #pragma GCC optimize ("Ofast")
 
 #pragma GCC optimize("03")
-#pragma GCC target ("avx")
-#pragma GCC target ("avx2")
+#pragma GCC target ("avx") or #pragma GCC target ("avx2")
+
+//In the Solution Constructor
+Solution()
+{
+    cin.tie(nullptr)->sync_with_stdio(false);
+}
 ```
 
 # guides I follow
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
-[C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
+[C++ operator overloading guides(a bit absolete, check out C++ 20 spaceship operator)](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
 [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
 
 
