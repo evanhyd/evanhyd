@@ -1,9 +1,6 @@
 # Things I need to pay attention next time:
- 
-  
-Hacky method to speed up reading unsigned integer (stolen from DMOJ)
-  
-huge buffer
+# Hacky method to speed up reading unsigned integer (stolen from DMOJ)   
+## Huge buffer  
 ```c++
 #define INPUT_SIZE (250<<10)
 int _i0=0;
@@ -11,7 +8,7 @@ char _,_i[INPUT_SIZE+5];
 #define su(x) do{for(x=_i[_i0++]-48;47<(_=_i[_i0++]);x=x*10+_-48);}while(0)
 ```
   
-hacky unsigned integer reader
+## Hacky unsigned integer reader  
 ```c++
 #define scan(x) do{while((x=getchar())<'0'); for(x-='0'; '0'<=(_=getchar()); x=(x<<3)+(x<<1)+_-'0');}while(0)
 char _;
@@ -19,55 +16,135 @@ char _;
   
   
   
-do not mix up signed and unsigned in arithmetic calculation
+# Do not mix up signed/unsigned variables
+## Bad
 ```c++
 constexpr int kCapacity = 10;
 std::string a, b;
 std::cin >> a >> b;
-if((kCapacity - a.size()) > b.size()) //oh no, kCapacity - a.size() can underflow
+if((kCapacity - a.size()) > b.size()) //oh no, kCapacity - a.size() can easily underflow
+{
+    //do something
+}
+```
+## Better
+```c++
+constexpr int kCapacity = 10;
+std::string a, b;
+std::cin >> a >> b;
+if((kCapacity - static_cast<int>(a.size())) > static_cast<int>(b.size())) // be careful under/overflow
 {
     //do something
 }
 ```
   
   
-  
-'\n' over std::endl, except for interactive console  
+# Do not flush the output buffer for no reason with exception of coding interactive console
+## Bad
 ```c++
-std::cout << "hello" << std::endl; //flushing buffer may be unnecessary except when debugging
+for(int i = 0; i < N; ++i)
+{
+    std::cout << "hello" << std::endl; //flushing buffer may be unnecessary except when debugging
+}
+```
+## Better
+```c++
+for(int i = 0; i < N; ++i)
+{
+    std::cout << "hello" << '\n'; //flushing buffer may be unnecessary except when debugging
+}
+std::cout << std::flush;
 ```
   
   
   
-pointer/reference to priority queue's top can be invalidated!  
+#Reference to priority queue's top can be invalidated!  
+## Bad
 ```c++
-priority_queue que;
+std::priority_queue<T> que;
 while(!que.empty())
 {
-    T& ref = que.top();
-    que.push(ref.Search()); //ref may be invalidated
+    T& tp = que.top();
+    que.push(T()); //tp may point toward other objects
 }
 ```
-  
-  
-  
-return reference directly may not evoke move semantics 
+## Better 
 ```c++
-Bar Foo(const Bar& rhs)
+std::priority_queue<T> que;
+while(!que.empty())
 {
-    return this->Interact(rhs); //may evoke copy constructor instead of move constructor
+    T tp = que.top();
+    que.push(T()); //does not affect tp
 }
 ```
   
   
   
-allocating new resources before deleting the old one  
+# Allocate new resources before deleting the old one  
+## Bad  
 ```c++
-delete old_data; //make sure to check self assignment (try copy and swap startegy)  
-Bar *new_data = new Bar(); //if exception happens, then it fails to allocate new resources AND the old data is lost!
-old_data = new_data;
+void Allocate(int N)
+{
+    delete old_data;
+    Bar *new_data = new Bar[N]{}; //if exception happens, then it fails to allocate new resources AND the old data is lost!
+    old_data = new_data;
+}
 ```
-  
+## Better
+```c++
+void Allocate(int N)
+{
+    Bar *new_data = new Bar[N]{}; //make sure to check self assignment (try copy and swap startegy)  
+    delete old_data;
+    old_data = new_data; //make sure to check self assignment (try copy and swap startegy)  
+}
+```
+
+
+# Exchange instead of swapping the values in move constructor
+## Bad  
+```c++
+Bar(Bar&& rhs) : Bar() //calling default constructor
+{
+    swap(*this, rhs);
+}
+```  
+## Better
+```c++
+Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(rhs.size_, 0))
+{
+    //rest of the code
+}
+```  
+
+# Do not copy/fill/move directly on the raw memory
+## Bad
+```c++
+void Construct(T* raw_memory, int size, T& default_value)
+{
+    for(int i = 0; i < size; ++i)
+    {
+        raw_memory[i] = default_value; //undefined behavior! calling copy assignment on uninitialized object
+    }
+}
+```
+## Slightly Better
+```c++
+void Construct(T* raw_memory, int size, T& default_value)
+{
+    for(int i = 0; i < size; ++i)
+    {
+        operator new(raw_memory + i) T(default_value); //placement new copy construct
+    }
+}
+```
+## Better
+```c++
+void Construct(T* raw_memory, int size, T& default_value)
+{
+    std::uninitialized_fill(raw_memory, raw_memory + i, default_value);
+}
+```
   
   
 Rule of Three?  
