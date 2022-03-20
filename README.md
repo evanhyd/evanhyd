@@ -86,7 +86,7 @@ while(!que.empty())
 void Allocate(int N)
 {
     delete old_data;
-    Bar *new_data = new Bar[N]{}; //if exception happens, then it fails to allocate new resources AND the old data is lost!
+    Bar *new_data = new Bar[N]{}; //if exception throws, then it fails to allocate new resources AND the old data is lost!
     old_data = new_data;
 }
 ```
@@ -94,9 +94,9 @@ void Allocate(int N)
 ```c++
 void Allocate(int N)
 {
-    Bar *new_data = new Bar[N]{}; //make sure to check self assignment (try copy and swap startegy)  
+    Bar *new_data = new Bar[N]{};
     delete old_data;
-    old_data = new_data; //make sure to check self assignment (try copy and swap startegy)  
+    old_data = new_data; //make sure to check self assignment
 }
 ```
 
