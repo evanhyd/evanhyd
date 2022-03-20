@@ -58,7 +58,7 @@ std::cout << std::flush;
   
   
   
-#Reference to priority queue's top can be invalidated!  
+# Reference to priority queue's top can be invalidated!  
 ## Bad
 ```c++
 std::priority_queue<T> que;
