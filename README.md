@@ -83,18 +83,21 @@ while(!que.empty())
 # Allocate new resources before deleting the old one  
 ## Bad  
 ```c++
-void Allocate(int N)
+void Allocate(const Bar& obj)
 {
+    //if this is self assignment, then it always lose the data
     delete old_data;
-    Bar *new_data = new Bar[N]{}; //if exception throws, then it fails to allocate new resources AND the old data is lost!
+    
+    //if exception throws, then it fails to allocate new resources AND the old data is lost
+    Bar *new_data = new Bar(obj);
     old_data = new_data;
 }
 ```
 ## Better
 ```c++
-void Allocate(int N)
+void Allocate(const Bar& obj)
 {
-    Bar *new_data = new Bar[N]{};
+    Bar *new_data = new Bar(obj);
     delete old_data;
     old_data = new_data; //make sure to check self assignment
 }
