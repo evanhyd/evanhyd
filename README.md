@@ -1,15 +1,6 @@
 # Things I need to pay attention next time:  
 
-# Hacky method to speed up integer reading (stolen and modified from DMOJ)   
-## Huge buffer  
-```c++
-#define INPUT_SIZE (250<<10)
-int _i0=0;
-char _,_i[INPUT_SIZE+5];
-#define su(x) do{for(x=_i[_i0++]-48;47<(_=_i[_i0++]);x=x*10+_-48);}while(0)
-```
-  
-## Hacky unsigned integer reader for competitive programming  
+## Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
 ```c++
 //not portable
 #if defined _WIN32 || defined _WIN64
@@ -87,7 +78,7 @@ if((kCapacity - static_cast<int>(a.size())) > static_cast<int>(b.size())) // be 
 ```
   
   
-# Do not flush the output buffer for no reason with exception of coding interactive console
+# Do not flush the output buffer for no reason
 ## Bad
 ```c++
 for(int i = 0; i < N; ++i)
@@ -95,11 +86,11 @@ for(int i = 0; i < N; ++i)
     std::cout << "hello" << std::endl; //flushing buffer may be unnecessary except when debugging
 }
 ```
-## Better
+## Better, with exception of coding interactive console  
 ```c++
 for(int i = 0; i < N; ++i)
 {
-    std::cout << "hello" << '\n'; //flushing buffer may be unnecessary except when debugging
+    std::cout << "hello" << '\n'; 
 }
 std::cout << std::flush;
 ```
@@ -141,7 +132,7 @@ void Allocate(const Bar& obj)
     old_data = new_data;
 }
 ```
-## Better
+## Better  
 ```c++
 void Allocate(const Bar& obj)
 {
@@ -160,7 +151,7 @@ Bar(Bar&& rhs) : Bar() //calling default constructor
     swap(*this, rhs);
 }
 ```  
-## Better
+## Slightly Better???  
 ```c++
 Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(rhs.size_, 0))
 {
@@ -189,7 +180,7 @@ void Construct(T* raw_memory, int size, T& default_value)
     }
 }
 ```
-## Better
+## Easier  
 ```c++
 void Construct(T* raw_memory, int size, T& default_value)
 {
@@ -200,8 +191,8 @@ void Construct(T* raw_memory, int size, T& default_value)
   
 Rule of Three?  
 Rule of Five?!  
-Rule of Four and an Half!  
-Rule of Zero!!!  
+Rule of Four and an Half!    
+Rule of Zero!  
   
   
   
