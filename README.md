@@ -4,10 +4,11 @@
 ```c++
 //not portable
 #if defined _WIN32 || defined _WIN64
-char getchar_unlocked() { return char(_getchar_nolock()); }
+inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
 #endif
 
 template <typename T>
+    requires std::signed_integral<T>
 T Read()
 {
     T x; bool neg = false; char c{};
@@ -16,15 +17,15 @@ T Read()
     return neg ? -x : x;
 }
 
-template <>
-unsigned Read<unsigned>()
+template <typename T>
+    requires std::unsigned_integral<T>
+T Read()
 {
-    unsigned x; char c{};
+    T x; char c{};
     do { c = getchar_unlocked(); } while (c < '0');
     for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
     return x;
 }
-
 ```
   
   
