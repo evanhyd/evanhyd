@@ -1,5 +1,6 @@
-# Things I need to pay attention next time:
-# Hacky method to speed up reading unsigned integer (stolen from DMOJ)   
+# Things I need to pay attention next time:  
+
+# Hacky method to speed up integer reading (stolen and modified from DMOJ)   
 ## Huge buffer  
 ```c++
 #define INPUT_SIZE (250<<10)
@@ -8,10 +9,57 @@ char _,_i[INPUT_SIZE+5];
 #define su(x) do{for(x=_i[_i0++]-48;47<(_=_i[_i0++]);x=x*10+_-48);}while(0)
 ```
   
-## Hacky unsigned integer reader  
+## Hacky unsigned integer reader for competitive programming  
 ```c++
-#define scan(x) do{while((x=getchar())<'0'); for(x-='0'; '0'<=(_=getchar()); x=(x<<3)+(x<<1)+_-'0');}while(0)
-char _;
+//not portable
+#if defined _WIN32 || defined _WIN64
+char getchar_unlocked() { return char(_getchar_nolock()); }
+#endif
+
+template <typename T>
+T Read()
+{
+    T x; bool neg = false; char c{};
+    do { c = getchar_unlocked(); if (c == '-') neg = true; } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0') {}
+    return neg ? -x : x;
+}
+
+template <>
+unsigned short Read<unsigned short>()
+{
+    unsigned short x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned Read<unsigned>()
+{
+    unsigned x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned long Read<unsigned long>()
+{
+    unsigned long x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
+
+template <>
+unsigned long long Read<unsigned long long>()
+{
+    unsigned long long x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
+}
 ```
   
   
