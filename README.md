@@ -7,8 +7,7 @@
 inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
 #endif
 
-template <typename T>
-    requires std::signed_integral<T>
+template <std::signed_integral T>
 T Read()
 {
     T x; bool neg = false; char c{};
@@ -17,27 +16,13 @@ T Read()
     return neg ? -x : x;
 }
 
-template <typename T>
-    requires std::unsigned_integral<T>
+template <std::unsigned_integral T>
 T Read()
 {
     T x; char c{};
     do { c = getchar_unlocked(); } while (c < '0');
     for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
     return x;
-}
-
-template <typename T>
-void Input(T& curr)
-{
-    curr = Read<T>();
-}
-
-template <typename T, typename... Args>
-void Input(T& curr, Args&... rest)
-{
-    curr = Read<T>();
-    Input(rest...);
 }
 ```
   
