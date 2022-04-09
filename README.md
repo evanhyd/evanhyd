@@ -216,6 +216,8 @@ for (int i = 0; i < 5; ++i)
 ```
 
 # some modern C++ meme
+
+## modern C++ duck typing
 ```c++
 auto Add(auto a, auto b)
 {
@@ -232,7 +234,7 @@ int main()
 }
 ```
    
-   
+## extract keys from map
 ```c++
 map<int, string> mp = {{1, "foo"}, {2, "bar"}};
 
@@ -245,7 +247,11 @@ for (const auto& [k, v] : mp)
     cout << k << ' ' << v << '\n';
 }
  ```
-
+ 
+ ## concise variable names
+ ```c++
+ static inline volatile constexpr std::unsigned_integral auto const a_variable_with_a_really_long_name = 0u;
+ ```
 
 
 # guides I follow
