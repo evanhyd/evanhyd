@@ -1,4 +1,6 @@
-# Lessons I learned in a *hard way*, tutorials collected from the internet  
+# Lessons learned in a *hard way* 
+No, please **do not** take this as "professional advice"  
+Open for pull requests if there's mistake below  
 
 ## Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
 ```c++
