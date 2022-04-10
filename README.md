@@ -96,31 +96,6 @@ while(!que.empty())
   
   
   
-# Allocate new resources before deleting the old one  
-## Bad  
-```c++
-void Allocate(const Bar& obj)
-{
-    //if this is self assignment, then it always lose the data
-    delete old_data;
-    
-    //if exception throws, then it fails to allocate new resources AND the old data is lost
-    Bar *new_data = new Bar(obj);
-    old_data = new_data;
-}
-```
-## Better  
-```c++
-//copy by value
-//a tiny bit of exception safety
-void Allocate(Bar new_data) 
-{
-    delete old_data;
-    old_data = new_data; //make sure to check self assignment
-}
-```
-
-
 # Exchange instead of swapping the values in move constructor
 ## Weird but ok  
 ```c++
@@ -136,7 +111,53 @@ Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(r
     //rest of the code
 }
 ```  
+  
+  
+  
+# Be careful when manage the resources
+## Bad  
+```c++
+T& T::operator=(const T& obj)
+{
+    //self assignment will lose data
+    delete this->data;
+    
+    //throwing exception will lose old data
+    this->data = new Bar(obj);
+    
+    return *this;
+}
+```
+## Dubious Choice?  
+```c++
+T& T::operator=(const T& obj)
+{
+    //a potential bottleneck
+    //how often does self assignment occur?
+    if(this != &obj)
+    {
+        delete this->data;
 
+        //throwing exception will lose old data
+        this->data = new Bar(obj);
+    }
+    
+    return *this;
+}
+```
+## Better  
+```c++
+//copy by value
+//provide a bit exception guarantee
+T& T::operator=(T obj)
+{
+    std::swap(this->data, obj.data); //or replace with custom swapping function
+    return *this;
+}
+```
+  
+  
+  
 # Do not copy/fill/move directly on the raw memory
 ## Bad
 ```c++
@@ -168,12 +189,10 @@ void Construct(T* raw_memory, int size, T& default_value)
 }
 ```
   
-  
-Rule of Three?  
-Rule of Five?!  
-Rule of Four and an Half!    
-Rule of Zero!  
-  
+# Rule of ???
+```
+Rule of 3 -> 5 -> 4.5 -> 0
+```
   
   
 # some variable names (stop using "temp" all the time pls)  
