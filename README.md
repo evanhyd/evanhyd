@@ -1,4 +1,4 @@
-# Things I need to pay attention next time:  
+# Lessons I learned in a *hard way*, tutorials collected from the internet  
 
 ## Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
 ```c++
@@ -56,7 +56,9 @@ if((kCapacity - static_cast<int>(a.size())) > static_cast<int>(b.size())) // be 
 ```c++
 for(int i = 0; i < N; ++i)
 {
-    std::cout << "hello" << std::endl; //flushing buffer may be unnecessary except when debugging
+    //flushing buffer may hurt performance
+    //but sometimes necessary
+    std::cout << "hello" << std::endl; 
 }
 ```
 ## Better, with exception of coding interactive console  
@@ -107,9 +109,10 @@ void Allocate(const Bar& obj)
 ```
 ## Better  
 ```c++
-void Allocate(const Bar& obj)
+//copy by value
+//a tiny bit of exception safety
+void Allocate(Bar new_data) 
 {
-    Bar *new_data = new Bar(obj);
     delete old_data;
     old_data = new_data; //make sure to check self assignment
 }
@@ -117,14 +120,14 @@ void Allocate(const Bar& obj)
 
 
 # Exchange instead of swapping the values in move constructor
-## Bad  
+## Weird but ok  
 ```c++
 Bar(Bar&& rhs) : Bar() //calling default constructor
 {
     swap(*this, rhs);
 }
 ```  
-## Slightly Better???  
+## Slightly Better? 
 ```c++
 Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(rhs.size_, 0))
 {
@@ -139,17 +142,19 @@ void Construct(T* raw_memory, int size, T& default_value)
 {
     for(int i = 0; i < size; ++i)
     {
-        raw_memory[i] = default_value; //undefined behavior! calling copy assignment on uninitialized object
+        //undefined behavior! calling copy assignment operator on uninitialized objects
+        raw_memory[i] = default_value; 
     }
 }
 ```
-## Slightly Better
+## Better
 ```c++
 void Construct(T* raw_memory, int size, T& default_value)
 {
     for(int i = 0; i < size; ++i)
     {
-        operator new(raw_memory + i) T(default_value); //placement new copy construct
+        //placement new copy construct
+        operator new(raw_memory + i) T(default_value); 
     }
 }
 ```
@@ -252,7 +257,8 @@ for (const auto& [k, v] : mp)
  ```c++
  static inline volatile constexpr std::unsigned_integral auto const a_variable_with_a_really_long_name = 0u;
  ```
-
+  
+  
 
 # guides I follow
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
