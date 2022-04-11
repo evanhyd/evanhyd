@@ -1,6 +1,6 @@
 # Lessons learned in a *hard way* 
-No, please **do not** take this as "professional advice"  
-Open for pull requests if there's mistake below  
+Please **do not** view these as "guides"  
+Open for pull requests to fix mistakes  
 
 ## Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
 ```c++
@@ -240,9 +240,9 @@ for (int i = 0; i < 5; ++i)
     cout << i[hello];
 }
 ```
-
+  
 # some modern C++ meme
-
+  
 ## modern C++ duck typing
 ```c++
 auto Add(auto a, auto b)
@@ -278,9 +278,12 @@ for (const auto& [k, v] : mp)
  ```c++
  static inline volatile constexpr std::unsigned_integral auto const a_variable_with_a_really_long_name = 0u;
  ```
+   
+   
+## brilliant std::string constructor
+![bad std::string constructor](https://github.com/evanhyd/evanhyd/blob/main/Image/C%2B%2BBadStringConstructor.PNG?raw=true)
+   
   
-  
-
 # guides I follow
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
 [C++ operator overloading guides(a bit absolete, check out C++ 20 spaceship operator)](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
