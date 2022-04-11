@@ -1,34 +1,6 @@
 # Lessons learned in a *hard way* 
 Please **do not** view these as "guides"  
 Open for pull requests to fix mistakes  
-
-## Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
-```c++
-//not portable
-#if defined _WIN32 || defined _WIN64
-inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
-#endif
-
-template <std::signed_integral T>
-T Read()
-{
-    T x; bool neg = false; char c{};
-    do { c = getchar_unlocked(); if (c == '-') neg = true; } while (c < '0');
-    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0') {}
-    return neg ? -x : x;
-}
-
-template <std::unsigned_integral T>
-T Read()
-{
-    T x; char c{};
-    do { c = getchar_unlocked(); } while (c < '0');
-    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
-    return x;
-}
-```
-  
-  
   
 # Do not mix up signed/unsigned variables
 ## Bad
@@ -193,8 +165,58 @@ void Construct(T* raw_memory, int size, T& default_value)
 ```
 Rule of 3 -> 5 -> 4.5 -> 0
 ```
+   
+   
+# hmmmm.... arr[i] => *(arr + i) => *(i + arr) = i[arr]
+```c++
+const char* hello = "hello";
+for (int i = 0; i < 5; ++i)
+{
+    std::cout << i[hello];
+}
+```
   
-  
+# modern C++ duck typing
+```c++
+auto Add(auto a, auto b)
+{
+    return a + b;
+}
+
+int main()
+{
+    auto c0 = Add(1, 2);
+    auto c1 = Add(1.2, 3.4);
+    auto c2 = Add(std::string("foo"), std::string("bar"));
+
+    std::cout << c0 << '\n' << c1 << '\n' << c2 << '\n';
+}
+```
+   
+# extract keys from map
+```c++
+std::map<int, std::string> mp = {{1, "foo"}, {2, "bar"}};
+
+auto entry = mp.extract(1);
+entry.key() = 3;
+mp.insert(std::move(entry));
+
+for (const auto& [k, v] : mp)
+{
+    std::cout << k << ' ' << v << '\n';
+}
+ ```
+ 
+ # concise variable names
+ ```c++
+ static thread_local inline volatile constexpr const unsigned long long int * const p = nullptr;
+ ```
+   
+   
+# brilliant std::string constructor
+![bad std::string constructor](https://github.com/evanhyd/evanhyd/blob/main/Image/C%2B%2BBadStringConstructor.PNG?raw=true)
+   
+   
 # some variable names (stop using "temp" all the time pls)  
 ```
 srce                   (source)
@@ -214,8 +236,7 @@ fn                     (function)
 ```
   
   
-  
-# tricks may or may not work in lxxxcode
+# tricks may or may not work in LC
 ```c++
 #pragma GCC optimize ("O2")
 #pragma GCC optimize ("Ofast")
@@ -223,66 +244,40 @@ fn                     (function)
 #pragma GCC optimize("03")
 #pragma GCC target ("avx") or #pragma GCC target ("avx2")
 
-//In the Solution Constructor
+//Replace the Solution constructor with
 Solution()
 {
     cin.tie(nullptr)->sync_with_stdio(false);
 }
 ```
-   
-   
-   
-# hmmmm.... arr[i] => *(arr + i) => *(i + arr) = i[arr]
+  
+  
+# Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
 ```c++
-const char* hello = "hello";
-for (int i = 0; i < 5; ++i)
+//not portable
+#if defined _WIN32 || defined _WIN64
+inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
+#endif
+
+template <std::signed_integral T>
+T Read()
 {
-    cout << i[hello];
+    T x; bool neg = false; char c{};
+    do { c = getchar_unlocked(); if (c == '-') neg = true; } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0') {}
+    return neg ? -x : x;
+}
+
+template <std::unsigned_integral T>
+T Read()
+{
+    T x; char c{};
+    do { c = getchar_unlocked(); } while (c < '0');
+    for (x = c - '0'; '0' <= (c = getchar_unlocked()); x = (x << 3) + (x << 1) + c - '0');
+    return x;
 }
 ```
   
-# some modern C++ meme
-  
-## modern C++ duck typing
-```c++
-auto Add(auto a, auto b)
-{
-    return a + b;
-}
-
-int main()
-{
-    auto c0 = Add(1, 2);
-    auto c1 = Add(1.2, 3.4);
-    auto c2 = Add(string("foo"), string("bar"));
-
-    cout << c0 << '\n' << c1 << '\n' << c2 << '\n';
-}
-```
-   
-## extract keys from map
-```c++
-map<int, string> mp = {{1, "foo"}, {2, "bar"}};
-
-auto node = mp.extract(1);
-node.key() = 3;
-mp.insert(move(node));
-
-for (const auto& [k, v] : mp)
-{
-    cout << k << ' ' << v << '\n';
-}
- ```
- 
- ## concise variable names
- ```c++
- static inline volatile constexpr std::unsigned_integral auto const a_variable_with_a_really_long_name = 0u;
- ```
-   
-   
-## brilliant std::string constructor
-![bad std::string constructor](https://github.com/evanhyd/evanhyd/blob/main/Image/C%2B%2BBadStringConstructor.PNG?raw=true)
-   
   
 # guides I follow
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
