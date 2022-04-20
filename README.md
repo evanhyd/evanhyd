@@ -160,10 +160,30 @@ void Construct(T* raw_memory, int size, T& default_value)
     std::uninitialized_fill(raw_memory, raw_memory + i, default_value);
 }
 ```
+
+# Smuggle default arguments into variadic template (credit to M.M)
+```c++
+struct Bar
+{
+    int first_argument;
+    const std::source_location srce;
+    
+    Bar(int a, const std::source_location s = std::source_location::current()) : first_argument(a), srce(s) {}
+}
+
+void Foo(Bar arg0, const auto&... args)
+{
+    //args0.srce haha
+}
+
+// 1 implicitly converts to Bar along with the source_location
+Foo(1, 2, 3, 4, 5, 6);
+
+```
   
 # Rule of ???
 ```
-Rule of 3 -> 5 -> 4.5 -> 0
+3 -> 5 -> 4.5 -> 0
 ```
    
    
