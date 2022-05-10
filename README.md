@@ -13,16 +13,7 @@ if((kCapacity - a.size()) > b.size()) //oh no, kCapacity - a.size() can easily u
     //do something
 }
 ```
-## Better
-```c++
-constexpr int kCapacity = 10;
-std::string a, b;
-std::cin >> a >> b;
-if((kCapacity - static_cast<int>(a.size())) > static_cast<int>(b.size())) // be careful under/overflow
-{
-    //do something
-}
-```
+  
   
   
 # Do not flush the output buffer for no reason
