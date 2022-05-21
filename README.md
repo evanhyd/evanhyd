@@ -301,7 +301,7 @@ T Read()
 
 # fun sites
 [NO LIFE](https://clist.by/)  
-[c iS tHe bEsT lAnGuAgE](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
+[c iS tHe bEsT lAnGuAgE, bEcAuSe lInUs tOrVaLdS sAiD sO](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)
 
