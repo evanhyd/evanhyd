@@ -300,7 +300,7 @@ T Read()
 
 
 # fun sites
-[NO LIFE](https://cp-algorithms.com/index.html#graphs)  
+[NO LIFE](https://clist.by/)  
 [c iS tHe bEsT lAnGuAgE](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)
