@@ -297,6 +297,13 @@ T Read()
 [Godbolt](https://godbolt.org/)  
 [Benchmark](https://quick-bench.com/)  
 
+
+
+# fun sites
+[NO LIFE](https://cp-algorithms.com/index.html#graphs)  
+[c iS tHe bEsT lAnGuAgE](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
+
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)
+
 
 
