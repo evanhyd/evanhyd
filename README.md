@@ -189,16 +189,16 @@ for (int i = 0; i < 5; ++i)
   
 # modern C++ duck typing
 ```c++
-auto Add(auto a, auto b)
+auto Add(const auto&... a)
 {
-    return a + b;
+    return (a + ...);
 }
 
 int main()
 {
-    auto c0 = Add(1, 2);
-    auto c1 = Add(1.2, 3.4);
-    auto c2 = Add(std::string("foo"), std::string("bar"));
+    auto c0 = Add(-1, 2, -3);
+    auto c1 = Add(1.2, 3.4, -3.1415926535);
+    auto c2 = Add(std::string("unbox"), std::string("the"), std::string("cat"));
 
     std::cout << c0 << '\n' << c1 << '\n' << c2 << '\n';
 }
