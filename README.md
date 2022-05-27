@@ -302,8 +302,8 @@ T Read()
 # fun sites
 [NO LIFE](https://clist.by/)  
 [c iS tHe bEsT lAnGuAgE, bEcAuSe lInUs tOrVaLdS sAiD sO](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
-[ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)
-![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)
+[ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)  
+![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)   
 
 
 
