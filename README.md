@@ -77,7 +77,7 @@ Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(r
   
   
   
-# Be careful when manage the resources
+# Be careful with resources management
 ## Bad  
 ```c++
 T& T::operator=(const T& obj)
@@ -191,7 +191,7 @@ for (int i = 0; i < 5; ++i)
 ```c++
 auto Add(const auto&... a)
 {
-    return (a + ...);
+    return (... + a);
 }
 
 int main()
