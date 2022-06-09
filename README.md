@@ -238,7 +238,8 @@ i, j, k                (index for nested loops)
 prev, curr, next(nxt)  (variables)
 arr                    (array)
 vec                    (vector)
-que                    (queue/deque)
+deq                    (deque)
+que                    (queue)
 lst, ls                (list)
 mp                     (map/hashmap)
 addr                   (address)
@@ -250,9 +251,8 @@ fn                     (function)
 # tricks may or may not work in LC
 ```c++
 #pragma GCC optimize ("O2")
-#pragma GCC optimize ("Ofast")
-
 #pragma GCC optimize("03")
+#pragma GCC optimize ("Ofast")
 #pragma GCC target ("avx") or #pragma GCC target ("avx2")
 
 //Replace the Solution constructor with
@@ -288,6 +288,9 @@ T Read()
     return x;
 }
 ```
+
+# How to cheese CS midterm exam
+![When the professor forgot to mention "recursion only"](https://github.com/evanhyd/evanhyd/blob/main/Image/CheeseMidterm.PNG?raw=true)
   
   
 # guides I follow
