@@ -47,15 +47,6 @@ while(!que.empty())
     que.push(T()); //tp may point toward other objects
 }
 ```
-## Better 
-```c++
-std::priority_queue<T> que;
-while(!que.empty())
-{
-    T tp = que.top();
-    que.push(T()); //does not affect tp
-}
-```
   
   
   
