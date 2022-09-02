@@ -216,7 +216,7 @@ for (const auto& [k, v] : mp)
    
    
 # brilliant std::string constructor
-![bad std::string constructor](https://github.com/evanhyd/evanhyd/blob/main/Image/C%2B%2BBadStringConstructor.PNG?raw=true)
+![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)
    
    
 # some variable names (stop using "temp" all the time pls)  
@@ -281,7 +281,7 @@ T Read()
 ```
 
 # How to cheese CS midterm exam
-![When the professor forgot to mention "recursion only"](https://github.com/evanhyd/evanhyd/blob/main/Image/CheeseMidterm.PNG?raw=true)
+![When the professor forgot to mention "recursion only"](Image/CheeseMidterm.PNG?raw=true)
   
   
 # guides I follow
