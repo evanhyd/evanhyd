@@ -68,7 +68,7 @@ Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(r
   
   
   
-# Be careful with resources management
+# Watch out the resources
 ## Bad  
 ```c++
 T& T::operator=(const T& obj)
@@ -105,14 +105,14 @@ T& T::operator=(const T& obj)
 //provide a bit exception guarantee
 T& T::operator=(T obj)
 {
-    std::swap(this->data, obj.data); //or replace with custom swapping function
+    swap(this->data, obj.data); //a custom swapping function
     return *this;
 }
 ```
   
   
   
-# Do not copy/fill/move directly on the raw memory
+# Do not copy/move directly on the raw memory
 ## Bad
 ```c++
 void Construct(T* raw_memory, int size, T& default_value)
@@ -221,8 +221,8 @@ for (const auto& [k, v] : mp)
    
 # some variable names (stop using "temp" all the time pls)  
 ```
-srce                   (source)
-dest                   (destination)
+src                   (source)
+dst                   (destination)
 first, last            (denote range [a, b))
 begin,  end            (denote range [a, b))
 i, j, k                (index for nested loops)
