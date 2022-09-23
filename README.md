@@ -167,7 +167,7 @@ for (const auto& [k, v] : mp) {
 ![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)
    
    
-# some variable names (a friendly reminder to my classmates, stop using "temp" all the time in the assignment plzzz)  
+# some variable names (a friendly reminder to my classmates, stop using "temp" all the time in the assignment PLEASE)  
 ```
 src                    (source)
 dst                    (destination)
@@ -238,8 +238,8 @@ T Read() {
 
 # fun sites
 [NO LIFE](https://clist.by/)  
-[c iS tHe bEsT lAnGuAgE, bEcAuSe lInUs tOrVaLdS sAiD sO](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 [ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)  
+[C](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)   
 
 
