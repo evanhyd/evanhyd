@@ -239,7 +239,7 @@ T Read() {
 # fun sites
 [NO LIFE](https://clist.by/)  
 [ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)  
-[C](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
+[C-hacker syndrome](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)   
 
 
