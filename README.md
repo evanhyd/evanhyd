@@ -45,7 +45,7 @@ T& T::operator=(const T& obj) {
     return *this;
 }
 ```
-## Dubious Choice?  
+## [Dubious Choice?](https://learn.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp?view=msvc-170)  
 ```c++
 T& T::operator=(const T& obj) {
     //a potential bottleneck
