@@ -15,23 +15,6 @@ while(!que.empty()) {
   
   
   
-# Exchange instead of swapping the values in move constructor
-## Weird but ok  
-```c++
-//assume calling default constructor
-Bar(Bar&& rhs) : Bar() {
-    swap(*this, rhs);
-}
-```  
-## Slightly Better? 
-```c++
-Bar(Bar&& rhs) : data_(std::exchange(rhs.data_, nullptr)), size_(std::exchange(rhs.size_, 0)) {
-    //rest of the code
-}
-```  
-  
-  
-  
 # Accidentally delete data    
 ## Bad  
 ```c++
@@ -129,7 +112,7 @@ for (int i = 0; i < 5; ++i) {
 }
 ```
   
-# modern C++ duck typing
+# modern C++ duck typing meme
 ```c++
 auto Add(const auto&... a) {
     return (... + a);
@@ -169,21 +152,21 @@ for (const auto& [k, v] : mp) {
    
 # some variable names (a friendly reminder to my classmates, stop using "temp" all the time in the assignment PLEASE)  
 ```
-src                    (source)
-dst                    (destination)
+srce                   (source)
+dest                   (destination)
 first, last            (denote range [a, b])
-begin,  end            (denote range [a, b))
-i, j, k                (index for nested loops)
+begin, end             (denote range [a, b))
+i, j, k, x, y, z       (index for nested loops)
 prev, curr, next(nxt)  (parent/child nodes)
 arr                    (array)
 vec                    (vector)
 deq                    (deque)
 que                    (queue)
-lst, ls                (list)
+ls, lst                (list)
 mp                     (map/hashmap)
 addr                   (address)
 ptr                    (pointer)
-fn, fun                (function)
+fn, fun, func          (function)
 ```
   
   
