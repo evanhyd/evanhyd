@@ -206,8 +206,9 @@ T Read() {
 }
 ```
 
-# How to cheese CS midterm exam
-![When the professor forgot to mention "recursion only"](Image/CheeseMidterm.PNG?raw=true)
+# How to cheese CS midterm exam  
+## When the professor forgot to specify "recursion only"
+![cheese_midterm](Image/CheeseMidterm.PNG?raw=true)
   
   
 # cool guides
