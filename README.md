@@ -1,85 +1,4 @@
-# Mistake that I always make, cite here to remind myself next time  
-Open for pull requests to fix mistake   
-  
-  
-  
-# Reference to priority queue's top can be invalidated!  
-## Bad
-```c++
-std::priority_queue<T> que;
-while(!que.empty()) {
-    T& tp = que.top();
-    que.push(T()); //tp may point toward other objects
-}
-```
-  
-  
-  
-# Accidentally delete data    
-## Bad  
-```c++
-T& T::operator=(const T& obj) {
-    //self assignment will lose data
-    delete this->data;
-    
-    //throwing exception will lose old data
-    this->data = new Bar(obj);
-    
-    return *this;
-}
-```
-## [Dubious Choice?](https://learn.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp?view=msvc-170)  
-```c++
-T& T::operator=(const T& obj) {
-    //a potential bottleneck
-    //how often does self assignment occur?
-    if(this != &obj) {
-        delete this->data;
-
-        //throwing exception will lose old data
-        this->data = new Bar(obj);
-    }
-    
-    return *this;
-}
-```
-## Better  
-```c++
-//copy by value
-//provide a bit exception guarantee
-T& T::operator=(T obj) {
-    swap(this->data, obj.data); //a custom swapping function
-    return *this;
-}
-```
-  
-  
-  
-# Do not copy/move directly on the raw memory buffer  
-## Bad
-```c++
-void Construct(T* raw_memory, int size, T& default_value) {
-    for(int i = 0; i < size; ++i) {
-        //undefined behavior! calling copy assignment operator on uninitialized objects
-        raw_memory[i] = default_value; 
-    }
-}
-```
-## Better
-```c++
-void Construct(T* raw_memory, int size, T& default_value) {
-    for(int i = 0; i < size; ++i) {
-        //placement new copy construct
-        operator new(raw_memory + i) T(default_value); 
-    }
-}
-```
-## Easier  
-```c++
-void Construct(T* raw_memory, int size, T& default_value) {
-    std::uninitialized_fill(raw_memory, raw_memory + i, default_value);
-}
-```
+# Hi, please feel free to look around : )
 
 # Smuggle default arguments into variadic function (credit to M.M)
 ```c++
@@ -97,12 +16,6 @@ void Foo(Bar arg0, const auto&... args) {
 Foo(1, 2, 3, 4, 5, 6);
 
 ```
-  
-# Rule of ???
-```
-3 -> 5 -> 4.5 -> 0
-```
-   
    
 # hmmmm.... arr[i] => *(arr + i) => *(i + arr) = i[arr]
 ```c++
@@ -211,15 +124,14 @@ T Read() {
 ![cheese_midterm](Image/CheeseMidterm.PNG?raw=true)
   
   
-# cool guides
+# cool resources
 [C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
 [C++ operator overloading guides(a bit absolete, check out C++ 20 spaceship operator)](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
 [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
 [Godbolt](https://godbolt.org/)  
 [Benchmark](https://quick-bench.com/)  
-
-
-
+  
+  
 # fun sites
 [NO LIFE](https://clist.by/)  
 [ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)  
