@@ -1,15 +1,20 @@
-# Hi, please feel free to look around : )
+# How to cheese CS midterm exam  
+## When the professor forgot to specify "recursion only"
+![cheese_midterm](Image/CheeseMidterm.PNG?raw=true)
+   
+# brilliant std::string constructor
+![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)
 
 # Smuggle default arguments into variadic function (credit to M.M)
 ```c++
 struct Bar {
-    int first_argument;
+    int a;
     const std::source_location srce;
-    Bar(int a, const std::source_location s = std::source_location::current()) : first_argument(a), srce(s) {}
+    Bar(int b, const std::source_location s = std::source_location::current()) : a(b), srce(s) {}
 }
 
 void Foo(Bar arg0, const auto&... args) {
-    //args0.srce haha
+  //do something
 }
 
 // integer "1" implicitly converts to Bar
@@ -17,11 +22,11 @@ Foo(1, 2, 3, 4, 5, 6);
 
 ```
    
-# hmmmm.... arr[i] => *(arr + i) => *(i + arr) = i[arr]
+# hmmmm.... arr[i] = *(arr + i) = *(i + arr) = i[arr]
 ```c++
-const char* hello = "hello";
-for (int i = 0; i < 5; ++i) {
-    std::cout << i[hello];
+int hello[] = {1, 2, 3};
+for (int i = 0; i < 3; ++i) {
+    i[hello] = 4;
 }
 ```
   
@@ -34,52 +39,35 @@ auto Add(const auto&... a) {
 int main() {
     auto c0 = Add(-1, 2, -3);
     auto c1 = Add(1.2, 3.4, -3.1415926535);
-    auto c2 = Add(std::string("unbox"), std::string("the"), std::string("cat"));
-
-    std::cout << c0 << '\n' << c1 << '\n' << c2 << '\n';
+    auto c2 = Add(string("unbox"), string("the"), string("cat"));
 }
 ```
    
 # extract keys from map
 ```c++
-std::map<int, std::string> mp = {{1, "foo"}, {2, "bar"}};
+map<int, string> mp = {{1, "foo"}, {2, "bar"}};
 
 auto entry = mp.extract(1);
 entry.key() = 3;
 mp.insert(std::move(entry));
-
-for (const auto& [k, v] : mp) {
-    std::cout << k << ' ' << v << '\n';
-}
- ```
- 
- # concise variable names
- ```c++
- static thread_local inline volatile constexpr const unsigned long long int * const p = nullptr;
  ```
    
-   
-# brilliant std::string constructor
-![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)
-   
-   
-# some variable names (a friendly reminder to my classmates, stop using "temp" all the time in the assignment PLEASE)  
+# good variable names to write obfuscated codes
 ```
-srce                   (source)
-dest                   (destination)
-first, last            (denote range [a, b])
-begin, end             (denote range [a, b))
-i, j, k, x, y, z       (index for nested loops)
-prev, curr, next(nxt)  (parent/child nodes)
-arr                    (array)
-vec                    (vector)
-deq                    (deque)
-que                    (queue)
-ls, lst                (list)
-mp                     (map/hashmap)
-addr                   (address)
-ptr                    (pointer)
-fn, fun, func          (function)
+src, srce                   (source)
+dst, dest                   (destination)
+first, last                 (denote range [a, b])
+i, j, k, x, y, z            (index for nested loops)
+prev, curr, next            (parent/child nodes)
+arr                         (array)
+vec                         (vector)
+deq                         (deque)
+que                         (queue)
+ls, lst                     (list)
+mp                          (map/hashmap)
+addr                        (address)
+ptr                         (pointer)
+fn, fun, func               (function)
 ```
   
   
@@ -88,14 +76,13 @@ fn, fun, func          (function)
 #pragma GCC optimize ("O2") or #pragma GCC optimize("O3") or #pragma GCC optimize ("Ofast")
 #pragma GCC target ("avx") or #pragma GCC target ("avx2")
 
-//Replace the Solution constructor with
-Solution() {
+const auto optimize = []() {
     cin.tie(nullptr)->sync_with_stdio(false);
-}
+}();
 ```
   
   
-# Hacky integer reader for competitive programming (stolen and modified from DMOJ)   
+# Hacky integer reader for competitive programming
 ```c++
 //not portable
 #if defined _WIN32 || defined _WIN64
@@ -118,24 +105,16 @@ T Read() {
     return x;
 }
 ```
-
-# How to cheese CS midterm exam  
-## When the professor forgot to specify "recursion only"
-![cheese_midterm](Image/CheeseMidterm.PNG?raw=true)
   
   
-# cool resources
-[C++ Google Style Guide](https://google.github.io/styleguide/cppguide.html)  
-[C++ operator overloading guides(a bit absolete, check out C++ 20 spaceship operator)](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
-[C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
+# cool resources  
 [Godbolt](https://godbolt.org/)  
 [Benchmark](https://quick-bench.com/)  
-  
-  
-# fun sites
-[NO LIFE](https://clist.by/)  
-[ONLINE COLLABORATIVE CODING](https://ide.thecodingwizard.me/)  
-[C-hacker syndrome](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
+[C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
+[C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
+[Contest Events](https://clist.by/)  
+[Collaboration Coding](https://ide.thecodingwizard.me/)  
+[C](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)   
 
 
