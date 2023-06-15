@@ -114,7 +114,6 @@ T Read() {
 [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)  
 [Contest Events](https://clist.by/)  
 [Collaboration Coding](https://ide.thecodingwizard.me/)  
-[C](http://warp.povusers.org/OpenLetters/ResponseToTorvalds.html)  
 ![visitor counter](https://komarev.com/ghpvc/?username=evanhyd)   
 
 
