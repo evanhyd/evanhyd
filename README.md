@@ -44,7 +44,7 @@ Foo(1, 2, 3, 4, 5, 6);
 
 ```
    
-# hmmmm.... arr[i] = *(arr + i) = *(i + arr) = i[arr]
+# Hmmmm.... arr[i] = *(arr + i) = *(i + arr) = i[arr]
 ```c++
 int hello[] = {1, 2, 3};
 for (int i = 0; i < 3; ++i) {
@@ -52,7 +52,7 @@ for (int i = 0; i < 3; ++i) {
 }
 ```
   
-# modern C++ duck typing meme
+# Modern C++ duck typing meme
 ```c++
 auto Add(const auto&... a) {
     return (... + a);
@@ -65,7 +65,7 @@ int main() {
 }
 ```
    
-# extract keys from map
+# Extract keys from map
 ```c++
 map<int, string> mp = {{1, "foo"}, {2, "bar"}};
 
@@ -74,7 +74,7 @@ entry.key() = 3;
 mp.insert(std::move(entry));
  ```
    
-# good variable names to write obfuscated codes
+# Good variable names to write obfuscated codes
 ```
 src, srce                   (source)
 dst, dest                   (destination)
@@ -93,7 +93,7 @@ fn, fun, func               (function)
 ```
   
   
-# tricks may or may not work in LC
+# Tricks may or may not work in LC
 ```c++
 const auto optimize = []() {
     cin.tie(nullptr)->sync_with_stdio(false);
@@ -127,7 +127,7 @@ T Read() {
 ```
   
   
-# cool resources  
+# Cool resources  
 [Godbolt](https://godbolt.org/)  
 [Benchmark](https://quick-bench.com/)  
 [C++ operator overloading guides](https://stackoverflow.com/questions/4421706/what-are-the-basic-rules-and-idioms-for-operator-overloading)   
