@@ -1,9 +1,31 @@
 # How to cheese CS midterm exam  
-## When the professor forgot to specify "recursion only"
+When the professor forgot to specify "recursion only"
 ![cheese_midterm](Image/CheeseMidterm.PNG?raw=true)
    
-# brilliant std::string constructor
-![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)
+# [Brilliant std::string constructor](https://www.youtube.com/watch?v=3MOw1a9B7kc)
+![bad std::string constructor](Image/C%2B%2BBadStringConstructor.PNG?raw=true)    
+
+# Too Perfect Forwarding  
+```c++
+  class FlagTree {
+    T _data;
+
+    template <typename ...Args>
+    FlagTree(Args&&... args) : 
+      _data(std::forward<Args>(args)...) {
+    }
+
+    FlagTree(const FlagTree& rhs) : 
+      _data(rhs._data) {
+    }
+
+    FlagTree(FlagTree& rhs) :
+      FlagTree(const_cast<const FlagTree&>(rhs)) {
+      //override perfect forwarding from the variadic constructor
+      //otherwise it doesn't even compile, wtf's going on
+    }
+  };
+```
 
 # Smuggle default arguments into variadic function (credit to M.M)
 ```c++
@@ -73,11 +95,9 @@ fn, fun, func               (function)
   
 # tricks may or may not work in LC
 ```c++
-#pragma GCC optimize ("O2") or #pragma GCC optimize("O3") or #pragma GCC optimize ("Ofast")
-#pragma GCC target ("avx") or #pragma GCC target ("avx2")
-
 const auto optimize = []() {
     cin.tie(nullptr)->sync_with_stdio(false);
+    return 0;
 }();
 ```
   
