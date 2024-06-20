@@ -46,9 +46,9 @@ Foo(1, 2, 3, 4, 5, 6);
    
 # Hmmmm.... arr[i] = *(arr + i) = *(i + arr) = i[arr]
 ```c++
-int hello[] = {1, 2, 3};
+int arr[] = {1, 2, 3};
 for (int i = 0; i < 3; ++i) {
-    i[hello] = 4;
+    i[arr] = 0;
 }
 ```
   
@@ -92,18 +92,10 @@ ptr                         (pointer)
 fn, fun, func               (function)
 ```
   
-  
-# Tricks may or may not work in LC
+# Competitive Programming Hacks
 ```c++
-const auto optimize = []() {
-    cin.tie(nullptr)->sync_with_stdio(false);
-    return 0;
-}();
-```
-  
-  
-# Hacky integer reader for competitive programming
-```c++
+const auto _ = cin.tie(nullptr)->sync_with_stdio(false);
+
 //not portable
 #if defined _WIN32 || defined _WIN64
 inline char getchar_unlocked() { return static_cast<char>(_getchar_nolock()); }
